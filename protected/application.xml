@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<application id="dentos_app" mode="Debug">
+	<paths>
+		<using namespace="Application.Common.*" /> <!-- este contiene los drivers para conectarse a la db-->
+		
+
+		<using namespace="Application.database.*" /> <!-- Se asigna la carpeta creada para archivos active record que se van a generar -->
+		<using namespace="System.Data.*" />  <!-- System hace referencia a la carpeta Framework/-->
+		<using namespace="System.Data.ActiveRecord.*" />
+		<using namespace="System.Data.ActiveRecord.Scaffold.*" />		
+		<using namespace="System.Data.ActiveRecord.TActiveRecordManager" /> <!-- se añade para poder automatizar las clases modelo-->
+	</paths>
+	<!-- modules configured and loaded for all services -->
+	<modules>
+		<module id="request" class="THttpRequest" UrlFormat="HiddenPath" />
+		<module id="parameter" class="TParameterModule" ParameterFile="Application.Data.Settings" />
+
+		<!-- <module class="System.Data.ActiveRecord.TActiveRecordConfig" EnableCache="true">
+			<database ConnectionString="pgsql:host=localhost;port=5432;dbname=dentos_db"
+				Username="dbuser" Password="dbpass"  Username="admin" Password="12345" />
+		</module> -->
+		
+		<!-- Se añade configuración para postgresql -->
+				<module id="db1" class="System.Data.TDataSourceConfig">
+					<database ConnectionString="pgsql:host=localhost;port=5432;dbname=dentos_db" Username="admin" Password="12345" />
+					<!-- <database ConnectionString="sqlite:protected/Data/Northwind.db"  /> -->
+				</module>
+				<module class="System.Data.ActiveRecord.TActiveRecordConfig" EnableCache="false" ConnectionID="db1" /> <!-- indicar al ACTIVE RECORD cómo conectarse (apunta al id) -->
+				
+				<!-- ConnectionID permite utilizar la misma conexión de base de datos en otros módulos como SqlMap:  -->
+				<module class="System.Data.SqlMap.TSqlMapConfig" ConnectionID="db1" /> 
+
+				
+	</modules>
+	<services>
+		<!-- page service -->
+		<service id="page" class="TPageService" DefaultPage="Home">
+			<modules>
+				<module id="session" class="THttpSession" SessionName="SSID" CookieMode="Only" UseCustomStorage="false" AutoStart="true" TimeOut="28800" />
+				<module id="asset" class="System.Web.TAssetManager" />
+
+			</modules>
+			
+			<pages  MasterClass="Application.Layouts.MainLayout" />
+			<!-- <pages MasterClass="Application.layouts.MainLayout" Theme="Basic" /> -->
+		</service>
+
+		 <!-- Se añade el PRADO Web Site Administration Tool para que este cree las clases active record automáticamente , su generador AR -->
+		<service id="wsat" class="System.Wsat.TWsatService" Password="my_secret_password" />
+		
+		
+	</services>
+</application>

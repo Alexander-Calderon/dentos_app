@@ -1,0 +1,42 @@
+<com:TContent ID="Main">
+
+<div class="" >
+	<h3 class="tituloBase ">Publicaciones</h3>
+	
+	<div class="row ">
+		<div class="buscador-fecha ">
+			<com:TLabel Text="Buscar por fecha: " />
+			<com:TTextBox ID="search_by_date" AutoPostBack="false" AutoTrim="true" />
+			<com:TActiveCustomValidator 
+				ControlToValidate="search_by_date" 
+				ValidationGroup="PublicView" 
+				OnServerValidate="buscarPorFecha"
+				ErrorMessage="El formato de fecha (<%=$this->search_by_date->Text%>) es incorrecto!"
+				Display="Dynamic" />
+			<com:TButton ID="btn_search_by_date" Text="Buscar" ValidationGroup="PublicView" />
+
+			
+		</div>
+				
+		<!-- Area de publicaciones -->
+		<com:TRepeater ID="RptListadoPublico">
+			<prop:ItemTemplate>
+				<div class="col-lg-6 text-center">
+					<h4><com:TLabel ID="publica_titulo" Text="<%#$this->Data['publica_titulo']%>" /></h4>
+					<p><com:TLabel ID="publica_descripcion" Text="<%#$this->Data['publica_descripcion']%>" /></p>
+					<small><com:TLabel ID="publica_fechacreacion" Text="<%#$this->Data['publica_fechacreacion']%>" /></small>
+				</div>
+			</prop:ItemTemplate>
+		</com:TRepeater>
+		
+
+	</div>
+
+
+</div>
+
+
+</com:TContent>
+
+
+

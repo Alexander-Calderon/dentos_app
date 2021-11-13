@@ -1,0 +1,16 @@
+html, body, form {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: verdana, 'trebuchet ms', sans-serif;
+	font-size: 10px;
+	background-color: white;
+	min-width:800px;
+}
+
+a {
+	outline: none;
+	text-decoration:none;
+}

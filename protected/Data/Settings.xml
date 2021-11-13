@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+    <parameter id="SiteTitle" value="Dentos prueba" />
+    <parameter id="SiteName" value="DentOS Blog" />
+    <parameter id="SiteOwner" value="Alexander Calderón" />
+    <parameter id="ThemeName" value="Bootstrap3" />
+</parameters>
