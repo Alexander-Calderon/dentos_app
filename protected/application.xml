@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- 
+
 <application id="dentos_app" mode="Debug">
 	<paths>
 		<using namespace="Application.Common.*" /> <!-- este contiene los drivers para conectarse a la db-->
